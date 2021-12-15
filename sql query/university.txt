@@ -14,7 +14,7 @@ ________________________________________________________________________________
   ORDER BY `cfu` ASC;
 _____________________________________________________________________________________________________
 
-3. Selezionare tutti gli studenti che hanno più di 30 anni (3179): 
+3. Selezionare tutti gli studenti che hanno più di 30 anni (cambia ogni giorno): 
 
   SELECT *
   FROM `students`
