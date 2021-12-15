@@ -43,6 +43,12 @@ ________________________________________________________________________________
   WHERE `date` = "2020-06-20"
   AND `hour` > "14:00:00"
   ORDER BY `hour` ASC;
+
+  SELECT *
+  FROM `exams`
+  WHERE `date` = "2020-06-20"
+  AND HOUR(`hour`) >= 14
+  ORDER BY `hour` ASC;
 _____________________________________________________________________________________________________
 
 6. Selezionare tutti i corsi di laurea magistrale (38):
@@ -51,6 +57,11 @@ ________________________________________________________________________________
   FROM `degrees`
   WHERE `level` = "magistrale"
   ORDER BY `id` ASC;
+  
+  SELECT *
+  FROM `degrees`
+  WHERE `name` LIKE "%magistrale%"
+  ORDER BY `id` ASC;
 _____________________________________________________________________________________________________
 
 7. Da quanti dipartimenti è composta l'università? (12):
@@ -58,7 +69,7 @@ ________________________________________________________________________________
   SELECT * 
   FROM `departments`;
 
-  SELECT COUNT(`id`)
+  SELECT COUNT(`id`) as `number_of_departments`
   FROM `departments`;
 _____________________________________________________________________________________________________
 
@@ -68,7 +79,7 @@ ________________________________________________________________________________
   FROM `teachers`
   WHERE `phone` IS NULL;
 
-  SELECT COUNT(`id`)
+  SELECT COUNT(`id`) as `no_phone_teachers`
   FROM `teachers`
   WHERE `phone` IS NULL;
 _____________________________________________________________________________________________________
