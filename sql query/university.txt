@@ -18,7 +18,12 @@ ________________________________________________________________________________
 
   SELECT *
   FROM `students`
-  WHERE DATEDIFF(CURRENT_DATE(), `date_of_birth`) > 365*30 
+  WHERE DATEDIFF(CURRENT_DATE, `date_of_birth`) > 365*30 
+  ORDER BY `date_of_birth` ASC;
+
+  SELECT *
+  FROM `students`
+  WHERE TIMESTAMPDIFF(YEAR, `date_of_birth`, CURRENT_DATE) > 30 
   ORDER BY `date_of_birth` ASC;
 _____________________________________________________________________________________________________
 
