@@ -2,8 +2,12 @@
 
   SELECT COUNT(`id`) as `enrolled_students`, YEAR(`students`.`enrolment_date`) as `year_enrolled_students`
   FROM `students`
-  GROUP BY YEAR(`students`.`enrolment_date`)
+  GROUP BY `year_enrolled_students`
   ORDER BY `year_enrolled_students` ASC;
+
+  SELECT COUNT(`id`), YEAR(`enrolment_date`) as `enrolment_year`, MONTH(`enrolment_date`) as `enrolment_month`
+  FROM `students`
+  GROUP BY `enrolment_year`, `enrolment_month`
 _____________________________________________________________________________________________________
 
 2. Contare gli insegnanti che hanno l'ufficio nello stesso edificio:
@@ -16,7 +20,7 @@ ________________________________________________________________________________
 
 3. Calcolare la media dei voti di ogni appello d'esame:
 
-  SELECT AVG(`vote`) as `vote_average`, `exam_id` 
+  SELECT ROUND(AVG(`vote`), 2) as `vote_average`, `exam_id`, COUNT(`exam_id`) as `num_students`
   FROM `exam_student`
   GROUP BY `exam_id`;
 _____________________________________________________________________________________________________
