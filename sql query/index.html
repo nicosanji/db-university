@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>University Query</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+</head>
+
+<body class="bg-dark">
+  <!-- 1 -->
+  <div class="container bg-secondary rounded py-2 my-4">
+    <h1 class="text-light text-center py-2">"Simple" Query</h1>
+    <!-- 1 / 1 -->
+    <div class="card p-2 my-2">
+      <p class="fw-bold">1. Selezionare tutti gli studenti nati nel 1990 (160):
+      </p>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">SELECT *</li>
+        <li class="list-group-item">FROM `students`</li>
+        <li class="list-group-item">WHERE YEAR(`date_of_birth`) = 1990</li>
+        <li class="list-group-item">ORDER BY `date_of_birth` ASC;</li>
+      </ul>
+    </div>
+    <!-- 1 / 2 -->
+    <div class="card p-2 my-2">
+      <p class="fw-bold">2. Selezionare tutti i corsi che valgono più di 10 crediti (479):
+      </p>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">SELECT *</li>
+        <li class="list-group-item">FROM `courses`</li>
+        <li class="list-group-item">WHERE `cfu` > 10</li>
+        <li class="list-group-item">ORDER BY `cfu` ASC;</li>
+      </ul>
+    </div>
+    <!-- 1 / 3 -->
+    <div class="card p-2 my-2">
+      <p class="fw-bold">3. Selezionare tutti gli studenti che hanno più di 30 anni (cambia ogni giorno):
+      </p>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">SELECT *</li>
+        <li class="list-group-item">FROM `students`</li>
+        <li class="list-group-item">WHERE DATEDIFF(CURRENT_DATE, `date_of_birth`) > 365*30</li>
+        <li class="list-group-item">ORDER BY `date_of_birth` ASC;</li>
+      </ul>
+      <br><br>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">SELECT *</li>
+        <li class="list-group-item">FROM `students`</li>
+        <li class="list-group-item">WHERE TIMESTAMPDIFF(YEAR, `date_of_birth`, CURRENT_DATE) > 30</li>
+        <li class="list-group-item">ORDER BY `date_of_birth` ASC;</li>
+      </ul>
+    </div>
+    <!-- 1 / 4 -->
+    <div class="card p-2 my-2">
+      <p class="fw-bold">4. Selezionare tutti i corsi del primo semestre del primo anno di un qualsiasi corso di laurea
+        (286):
+      </p>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">SELECT *</li>
+        <li class="list-group-item">FROM `courses`</li>
+        <li class="list-group-item">WHERE `year` = 1</li>
+        <li class="list-group-item">AND `period` = "I semestre"</li>
+        <li class="list-group-item">ORDER BY `period` ASC;</li>
+      </ul>
+    </div>
+    <!-- 1 / 5 -->
+    <div class="card p-2 my-2">
+      <p class="fw-bold">5. Selezionare tutti gli appelli d'esame che avvengono nel pomeriggio (dopo le 14) del
+        20/06/2020 (21):
+      </p>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">SELECT *</li>
+        <li class="list-group-item">FROM `exams`</li>
+        <li class="list-group-item">WHERE `date` = "2020-06-20"</li>
+        <li class="list-group-item">AND `hour` > "14:00:00"</li>
+        <li class="list-group-item">ORDER BY `hour` ASC;</li>
+      </ul>
+      <br><br>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">SELECT *</li>
+        <li class="list-group-item">FROM `exams`</li>
+        <li class="list-group-item">WHERE `date` = "2020-06-20"</li>
+        <li class="list-group-item">AND HOUR(`hour`) >= 14</li>
+        <li class="list-group-item">ORDER BY `hour` ASC;</li>
+      </ul>
+    </div>
+    <!-- 1 / 6 -->
+    <div class="card p-2 my-2">
+      <p class="fw-bold">6. Selezionare tutti i corsi di laurea magistrale (38):
+      </p>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">SELECT *</li>
+        <li class="list-group-item">FROM `degrees`</li>
+        <li class="list-group-item">WHERE `level` = "magistrale"</li>
+        <li class="list-group-item">ORDER BY `id` ASC;</li>
+      </ul>
+      <br><br>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">SELECT *</li>
+        <li class="list-group-item">FROM `degrees`</li>
+        <li class="list-group-item">WHERE `name` LIKE "%magistrale%"</li>
+        <li class="list-group-item">ORDER BY `id` ASC;</li>
+      </ul>
+    </div>
+    <div class="card p-2 my-2">
+      <p class="fw-bold">7. Da quanti dipartimenti è composta l'università? (12):
+      </p>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">SELECT *</li>
+        <li class="list-group-item">FROM `departments`;</li>
+      </ul>
+      <br><br>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">SELECT COUNT(`id`) as `number_of_departments`</li>
+        <li class="list-group-item">FROM `departments`;</li>
+      </ul>
+    </div>
+    <div class="card p-2 my-2">
+      <p class="fw-bold">8. Quanti sono gli insegnanti che non hanno un numero di telefono? (50):
+      </p>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">SELECT *</li>
+        <li class="list-group-item">FROM `teachers`</li>
+        <li class="list-group-item">WHERE `phone` IS NULL;</li>
+      </ul>
+      <br><br>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">SELECT COUNT(`id`) as `no_phone_teachers`</li>
+        <li class="list-group-item">FROM `teachers`</li>
+        <li class="list-group-item">WHERE `phone` IS NULL;</li>
+      </ul>
+    </div>
+  </div>
+  <!-- 2 (GROUP BY) -->
+  <div class="container bg-success rounded py-2 my-4">
+    <h1 class="text-light text-center py-2">"Group By" Query</h1>
+    <!-- 2 / 1 -->
+    <div class="card p-2 my-2">
+      <p class="fw-bold">1. Contare quanti iscritti ci sono stati ogni anno:
+      </p>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">SELECT COUNT(`id`) as `enrolled_students`, YEAR(`students`.`enrolment_date`) as
+          `year_enrolled_students`</li>
+        <li class="list-group-item">FROM `students`</li>
+        <li class="list-group-item">GROUP BY `year_enrolled_students`</li>
+        <li class="list-group-item">ORDER BY `year_enrolled_students` ASC;</li>
+      </ul>
+      <br><br>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item"> SELECT COUNT(`id`), YEAR(`enrolment_date`) as `enrolment_year`,
+          MONTH(`enrolment_date`) as `enrolment_month`</li>
+        <li class="list-group-item">FROM `students`</li>
+        <li class="list-group-item">GROUP BY `enrolment_year`, `enrolment_month`</li>
+      </ul>
+    </div>
+    <!-- 2 / 2 -->
+    <div class="card p-2 my-2">
+      <p class="fw-bold">2. Contare gli insegnanti che hanno l'ufficio nello stesso edificio:</p>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">SELECT COUNT(`id`) as `same_address_teachers`, `office_address`</li>
+        <li class="list-group-item">FROM `teachers`</li>
+        <li class="list-group-item">GROUP BY `teachers`.`office_address`</li>
+        <li class="list-group-item">ORDER BY `same_address_teachers` DESC;</li>
+      </ul>
+    </div>
+    <!-- 2 / 3 -->
+    <div class="card p-2 my-2">
+      <p class="fw-bold">3. Calcolare la media dei voti di ogni appello d'esame:
+      </p>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">SELECT ROUND(AVG(`vote`), 2) as `vote_average`, `exam_id`, COUNT(`exam_id`) as
+          `num_students`</li>
+        <li class="list-group-item">FROM `exam_student`</li>
+        <li class="list-group-item">GROUP BY `exam_id`;</li>
+      </ul>
+    </div>
+    <!-- 2 / 4 -->
+    <div class="card p-2 my-2">
+      <p class="fw-bold">4. Contare quanti corsi di laurea ci sono per ogni dipartimento:
+      </p>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">SELECT COUNT(`id`) as `courses_department`, `department_id`</li>
+        <li class="list-group-item">FROM `courses`</li>
+        <li class="list-group-item">FROM `degrees`</li>
+        <li class="list-group-item">GROUP BY(`department_id`)</li>
+        <li class="list-group-item">ORDER BY `courses_department` ASC;</li>
+      </ul>
+    </div>
+  </div>
+  <!-- 3 (JOIN) -->
+  <div class="container bg-info rounded py-2 my-4">
+    <h1 class="text-light text-center py-2">"Join" Query</h1>
+    <!-- 3 / 1 -->
+    <div class="card p-2 my-2">
+      <p class="fw-bold">1. Selezionare tutti gli studenti iscritti al Corso di Laurea in Economia (68):</p>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">SELECT `students`.`id`, `students`.`name`, `students`.`surname`, `degrees`.`name`
+          as `degree_name`</li>
+        <li class="list-group-item">FROM `students`</li>
+        <li class="list-group-item">INNER JOIN `degrees` ON `students`.`degree_id` = `degrees`.`id`</li>
+        <li class="list-group-item">WHERE `degrees`.`name` = "Corso di Laurea in Economia"</li>
+        <li class="list-group-item">ORDER BY `students`.`id` ASC;</li>
+      </ul>
+    </div>
+    <!-- 3 / 2 -->
+    <div class="card p-2 my-2">
+      <p class="fw-bold">2. Selezionare tutti i Corsi di Laurea del Dipartimento di Neuroscienze (7):</p>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">SELECT `degrees`.`id`, `degrees`.`name` as `degrees_name`, `degrees`.`level`,
+          `departments`.`name` as "department_name"</li>
+        <li class="list-group-item">FROM `degrees`</li>
+        <li class="list-group-item">INNER JOIN `departments` ON `degrees`.`department_id` = `departments`.`id`</li>
+        <li class="list-group-item">WHERE `departments`.`name` = "Dipartimento di Neuroscienze";</li>
+      </ul>
+    </div>
+    <!-- 3 / 3 -->
+    <div class="card p-2 my-2">
+      <p class="fw-bold">3. Selezionare tutti i corsi in cui insegna Fulvio Amato (id=44) (11):</p>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">SELECT `teachers`.`name`,`teachers`.`surname`, `courses`.`degree_id`,
+          `courses`.`name`, `courses`.`year`, `courses`.`cfu`</li>
+        <li class="list-group-item">FROM `course_teacher`</li>
+        <li class="list-group-item">INNER JOIN `teachers` ON `course_teacher`.`teacher_id`=`teachers`.`id`</li>
+        <li class="list-group-item">INNER JOIN `courses` ON `course_teacher`.`course_id`=`courses`.`id`</li>
+        <li class="list-group-item">WHERE `teachers`.`id` = 44</li>
+        <li class="list-group-item">ORDER BY `courses`.`year` ASC;</li>
+      </ul>
+    </div>
+    <!-- 3 / 4 -->
+    <div class="card p-2 my-2">
+      <p class="fw-bold">4. Selezionare tutti gli studenti con i dati relativi al corso di laurea a cui sono iscritti e
+        il relativo dipartimento, in ordine alfabetico per cognome e nome:</p>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">SELECT `students`.`name`,`students`.`surname`, `degrees`.`name` as `degrees_name`,
+          `departments`.`name` as `departments_name`</li>
+        <li class="list-group-item">FROM `students`</li>
+        <li class="list-group-item">INNER JOIN `degrees` ON `students`.`degree_id`=`degrees`.`id`</li>
+        <li class="list-group-item">INNER JOIN `departments` ON `degrees`.`department_id`=`departments`.`id`</li>
+        <li class="list-group-item">ORDER BY `students`.`surname`, `students`.`name` ASC;</li>
+      </ul>
+    </div>
+    <!-- 3 / 5 -->
+    <div class="card p-2 my-2">
+      <p class="fw-bold">5. Selezionare tutti i corsi di laurea con i relativi corsi e insegnanti:</p>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">SELECT `degrees`.`name`, `degrees`.`level`,
+          `courses`.`name`, `courses`.`year`, `courses`.`cfu`, `teachers`.`name`, `teachers`.`surname`</li>
+        <li class="list-group-item">FROM `course_teacher`</li>
+        <li class="list-group-item">INNER JOIN `courses` ON `course_teacher`.`course_id`=`courses`.`id`</li>
+        <li class="list-group-item">INNER JOIN `degrees` ON `courses`.`degree_id`=`degrees`.`id`</li>
+        <li class="list-group-item">INNER JOIN `teachers` ON `course_teacher`.`teacher_id`=`teachers`.`id`</li>
+        <li class="list-group-item">ORDER BY `degrees`.`name` ASC, `teachers`.`surname` ASC;</li>
+      </ul>
+    </div>
+    <!-- 3 / 6 -->
+    <div class="card p-2 my-2">
+      <p class="fw-bold">6. Selezionare tutti i docenti che insegnano nel Dipartimento di Matematica (id=5) (70):</p>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">SELECT `teachers`.`name`, `teachers`.`surname`, `departments`.`name` as
+          `departments_name`, `courses`.`name` as `courses_name`, `degrees`.`name` as `degrees_name`</li>
+        <li class="list-group-item">FROM `course_teacher`</li>
+        <li class="list-group-item">INNER JOIN `teachers` ON `course_teacher`.`teacher_id`=`teachers`.`id`</li>
+        <li class="list-group-item">INNER JOIN `courses` ON `course_teacher`.`course_id`=`courses`.`id`</li>
+        <li class="list-group-item">INNER JOIN `degrees` ON `courses`.`degree_id`=`degrees`.`id`</li>
+        <li class="list-group-item">INNER JOIN `departments` ON `degrees`.`department_id`=`departments`.`id`</li>
+        <li class="list-group-item">WHERE `departments`.`name`= "Dipartimento di Matematica"</li>
+        <li class="list-group-item">ORDER BY `teachers`.`surname` ASC;</li>
+      </ul>
+      <br><br>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">SELECT `teachers`.`name`, `teachers`.`surname`, `departments`.`id`,
+          `departments`.`name` as `departments_name`, `courses`.`name` as `courses_name`, `degrees`.`name` as
+          `degrees_name`</li>
+        <li class="list-group-item">FROM `course_teacher`</li>
+        <li class="list-group-item">INNER JOIN `teachers` ON `course_teacher`.`teacher_id`=`teachers`.`id`</li>
+        <li class="list-group-item">INNER JOIN `courses` ON `course_teacher`.`course_id`=`courses`.`id`</li>
+        <li class="list-group-item">INNER JOIN `degrees` ON `courses`.`degree_id`=`degrees`.`id`</li>
+        <li class="list-group-item">INNER JOIN `departments` ON `degrees`.`department_id`=`departments`.`id`</li>
+        <li class="list-group-item">WHERE `departments`.`id`= 5</li>
+        <li class="list-group-item">ORDER BY `teachers`.`surname` ASC;</li>
+      </ul>
+    </div>
+    <!-- 3 / 7 -->
+    <div class="card p-2 my-2">
+      <p class="fw-bold">7. BONUS: Selezionare per ogni studente quanti tentativi d’esame ha sostenuto per superare
+        ciascuno dei suoi esami:</p>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">SELECT `students`.`name`, `students`.`surname`, `courses`.`name`,
+          COUNT(`exams`.`id`) as `exams_attempts`</li>
+        <li class="list-group-item">FROM `students`</li>
+        <li class="list-group-item">INNER JOIN `exam_student` ON `students`.`id` = `exam_student`.`student_id`</li>
+        <li class="list-group-item">INNER JOIN `exams` ON `exam_student`.`exam_id` = `exams`.`id`</li>
+        <li class="list-group-item">INNER JOIN `courses` ON `exams`.`course_id` = `courses`.`id`</li>
+        <li class="list-group-item">GROUP BY `students`.`name`, `students`.`surname`, `courses`.`id`;</li>
+      </ul>
+    </div>
+  </div>
+</body>
+
+</html>
